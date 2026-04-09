@@ -1,25 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-serif: "Cormorant Garamond", serif;
+  --font-display: "Playfair Display", serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   
-  --color-warm-bg: #f5f5f0;
-  --color-warm-ink: #1a1a1a;
-  --color-accent: #5A5A40; /* Olive accent */
+  --color-warm-bg: #fdfcf9;
+  --color-warm-ink: #121212;
+  --color-accent: #6b6b4b; /* Refined Olive */
+  --color-gold: #c5a059;
 }
 
 @layer base {
   body {
-    @apply bg-warm-bg text-warm-ink font-sans antialiased;
+    @apply bg-warm-bg text-warm-ink font-sans antialiased overflow-x-hidden;
   }
   
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
   }
 }
 
-.perspective-1000 {
-  perspective: 1000px;
+/* Grainy Texture Overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+.text-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.mask-oval {
+  clip-path: ellipse(40% 50% at 50% 50%);
+}
+
+.glass {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20;
 }
